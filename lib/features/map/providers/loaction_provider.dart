@@ -77,6 +77,11 @@ class LocationNotifier extends StateNotifier<LocationState>{
    }
    return permission == LocationPermission.whileInUse || permission == LocationPermission.always;
   }
-
+  @override
+  void dispose() {
+    _sub?.cancel();
+    super.dispose();
+  }
+  final locationProvider = StateNotifierProvider<LocationNotifier ,LocationState>((ref) => LocationNotifier() );
 
 }
